@@ -1,0 +1,17 @@
+<%= form_with url: ai_annotations_path, method: :post, local: true do |f| %>
+  <div>
+    <label style="display: block">Text</label>
+    <%= f.textarea :text, rows: 5, class: "text-input", style: "width: 80%;" %>
+  </div>
+
+  <div>
+    <label style="display: block;">Prompt</label>
+    <%= f.textarea :prompt, rows: 2, class: "prompt-input", style: "width: 80%;" %>
+  </div>
+
+    <div>
+    <%= f.submit "Submit", disabled: true, class: "submit-button" %>
+  </div>
+<% end %>
+
+<%= javascript_import_module_tag 'enableSubmitOnInput' %>

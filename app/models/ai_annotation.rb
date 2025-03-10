@@ -41,7 +41,8 @@ class AiAnnotation < ApplicationRecord
       }
     )
 
-    response.dig("choices", 0, "message", "content")
+    result = response.dig("choices", 0, "message", "content")
+    AiAnnotation.create!(content: result)
   end
 
   private

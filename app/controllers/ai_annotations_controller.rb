@@ -8,8 +8,7 @@ class AiAnnotationsController < ApplicationController
   def create
     text = params[:text]
     prompt = params[:prompt]
-    inline_annotation = AiAnnotation.generate!(text, prompt)
-    ai_annotation = AiAnnotation.create!(content: inline_annotation)
+    ai_annotation = AiAnnotation.generate!(text, prompt)
 
     redirect_to "/ai_annotations/#{ai_annotation.uuid}"
   rescue => e

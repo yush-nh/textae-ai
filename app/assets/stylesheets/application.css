@@ -9,7 +9,13 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
- .flash.alert {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.flash.alert {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;

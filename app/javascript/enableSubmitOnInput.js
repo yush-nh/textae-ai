@@ -1,12 +1,13 @@
 const enableSubmitOnInput = () => {
+  const form = document.querySelector(".ai-annotation-form")
+  if (!form) return
+
   const textInput = document.querySelector(".text-input")
   const promptInput = document.querySelector(".prompt-input")
   const submitButton = document.querySelector(".submit-button")
 
-  if (!textInput || !promptInput || !submitButton) return
-
   const toggleSubmitButton = () => {
-    if (textInput.value.trim() && promptInput.value.trim()) {
+    if (form.checkValidity()) {
       submitButton.disabled = false
     } else {
       submitButton.disabled = true

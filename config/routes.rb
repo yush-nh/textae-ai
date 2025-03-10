@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  get "/ai_annotations/:uuid" => "ai_annotations#show"
 end

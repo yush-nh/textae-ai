@@ -1,4 +1,6 @@
-<%= form_with url: ai_annotations_path, method: :post, local: true do |f| %>
+<%# When post with turbo, TextAE events does not work correctly on redirected page. %>
+<%# To fix this problem, turning off turbo. %>
+<%= form_with url: ai_annotations_path, method: :post, data: { turbo: false } do |f| %>
   <div>
     <label style="display: block">Text</label>
     <%= f.textarea :text, rows: 5, class: "text-input", style: "width: 80%;" %>

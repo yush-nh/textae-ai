@@ -15,6 +15,6 @@ class AiAnnotationsController < ApplicationController
   rescue => e
     Rails.logger.error "Error: #{e.message}"
     flash.now[:alert] = "Unexpected error occurred while generating AI annotation."
-    render :new, status: :internal_server_error
+    render :new, status: :unprocessable_entity
   end
 end

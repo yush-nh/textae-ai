@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "ai_annotations#new"
 
+  get "/ai_annotations/new" => "ai_annotations#new"
   get "/ai_annotations/:uuid" => "ai_annotations#show"
+  resources :ai_annotations, only: :create
 end

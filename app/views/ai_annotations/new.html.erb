@@ -1,0 +1,19 @@
+<%# When post with turbo, TextAE events does not work correctly on redirected page. %>
+<%# To fix this problem, turning off turbo. %>
+<%= form_with url: ai_annotations_path, method: :post, data: { turbo: false }, class: "ai-annotation-form" do |f| %>
+  <div>
+    <label style="display: block">Text</label>
+    <%= f.textarea :text, required: true, rows: 5, class: "text-input", style: "width: 80%;" %>
+  </div>
+
+  <div>
+    <label style="display: block;">Prompt</label>
+    <%= f.textarea :prompt, required: true, rows: 2, class: "prompt-input", style: "width: 80%;" %>
+  </div>
+
+    <div>
+    <%= f.submit "Submit", disabled: true, class: "submit-button" %>
+  </div>
+<% end %>
+
+<%= javascript_import_module_tag 'initFormValidation' %>

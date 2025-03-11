@@ -25,6 +25,10 @@
   </head>
 
   <body>
+    <% if alert %>
+      <div class="flash alert"><%= alert %></div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -1,3 +1,31 @@
-<div class="textae-editor" mode="edit">
+<%# When post with turbo, TextAE events does not work correctly on redirected page. %>
+<%# To fix this problem, turning off turbo. %>
+<%= form_with url: ai_annotations_path, method: :post, data: { turbo: false }, class: "ai-annotation-form" do |f| %>
+  <div>
+    <label style="display: block;">Prompt</label>
+    <%= f.textarea :prompt, required: true, rows: 2, style: "width: 80%;" %>
+  </div>
+
+  <%= f.hidden_field :textae_annotation, id: 'textae-annotation' %>
+
+  <div>
+    <%= f.submit "Submit", disabled: true %>
+  </div>
+<% end %>
+
+<%= javascript_import_module_tag 'initFormValidation' %>
+
+<script>
+  const html = `
+<div class="textae-editor" id="ai-textae-editor" mode="edit">
   <%= @ai_annotation %>
-</div>
+</div>`
+
+  document.querySelector('.content').insertAdjacentHTML('afterbegin', html)
+  const editor = window.initializeTextAEEditor()
+    .find((editor) => editor.id === 'ai-textae-editor')
+
+  editor.inspectCallback = (annotation) => {
+    document.getElementById('textae-annotation').value = JSON.stringify(annotation)
+  }
+</script>

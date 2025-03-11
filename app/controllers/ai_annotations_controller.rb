@@ -6,7 +6,7 @@ class AiAnnotationsController < ApplicationController
   def new; end
 
   def create
-    text = params[:text]
+    text = params[:text] || textae_annotation
     prompt = params[:prompt]
     ai_annotation = AiAnnotation.generate!(text, prompt)
 
@@ -15,5 +15,19 @@ class AiAnnotationsController < ApplicationController
     Rails.logger.error "Error: #{e.message}"
     flash.now[:alert] = "Unexpected error occurred while generating AI annotation."
     render :new, status: :unprocessable_entity
+  end
+
+  private
+
+  def textae_annotation
+    uri = URI.parse("https://pubannotation.org/conversions/json2inline")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request["Content-Type"] = "application/json"
+    request.body = params[:textae_annotation]
+
+    http.request(request).body.force_encoding('UTF-8')
   end
 end

@@ -2,20 +2,18 @@ const enableSubmitOnInput = () => {
   const form = document.querySelector(".ai-annotation-form")
   if (!form) return
 
-  const textInput = document.querySelector(".text-input")
-  const promptInput = document.querySelector(".prompt-input")
-  const submitButton = document.querySelector(".submit-button")
+  const { text, prompt, commit } = form.elements
 
   const toggleSubmitButton = () => {
     if (form.checkValidity()) {
-      submitButton.disabled = false
+      commit.disabled = false
     } else {
-      submitButton.disabled = true
+      commit.disabled = true
     }
   }
 
-  textInput.addEventListener("input", () => toggleSubmitButton())
-  promptInput.addEventListener("input", () => toggleSubmitButton())
+  text.addEventListener("input", () => toggleSubmitButton())
+  prompt.addEventListener("input", () => toggleSubmitButton())
 }
 
 document.addEventListener("turbo:load", () => enableSubmitOnInput())

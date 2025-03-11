@@ -3,17 +3,10 @@ const enableSubmitOnInput = () => {
   if (!form) return
 
   const { text, prompt, commit } = form.elements
+  const enableSubmitButton = () => commit.disabled = !form.checkValidity()
 
-  const toggleSubmitButton = () => {
-    if (form.checkValidity()) {
-      commit.disabled = false
-    } else {
-      commit.disabled = true
-    }
-  }
-
-  text.addEventListener("input", () => toggleSubmitButton())
-  prompt.addEventListener("input", () => toggleSubmitButton())
+  text.addEventListener("input", () => enableSubmitButton())
+  prompt.addEventListener("input", () => enableSubmitButton())
 }
 
 document.addEventListener("turbo:load", () => enableSubmitOnInput())

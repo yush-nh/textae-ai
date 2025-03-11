@@ -1,4 +1,4 @@
-const enableSubmitOnInput = () => {
+const initFormValidation = () => {
   const form = document.querySelector(".ai-annotation-form")
   if (!form) return
 
@@ -9,5 +9,5 @@ const enableSubmitOnInput = () => {
   prompt.addEventListener("input", enableSubmitButton)
 }
 
-document.addEventListener("turbo:load", enableSubmitOnInput)
-document.addEventListener("turbo:render", enableSubmitOnInput)
+document.addEventListener("turbo:load", initFormValidation)
+document.addEventListener("turbo:render", initFormValidation)

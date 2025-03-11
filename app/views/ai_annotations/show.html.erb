@@ -6,6 +6,7 @@
     <%= f.textarea :prompt, required: true, rows: 2, style: "width: 80%;" %>
   </div>
 
+  <%= f.hidden_field :uuid, value: @ai_annotation.uuid %>
   <%= f.hidden_field :textae_annotation, id: 'textae-annotation' %>
 
   <div>
@@ -18,7 +19,7 @@
 <script>
   const html = `
 <div class="textae-editor" id="ai-textae-editor" mode="edit">
-  <%= @ai_annotation %>
+  <%= @ai_annotation.content %>
 </div>`
 
   document.querySelector('.content').insertAdjacentHTML('afterbegin', html)

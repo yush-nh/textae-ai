@@ -6,7 +6,7 @@ const initFormValidation = () => {
   const enableSubmitButton = () => commit.disabled = !form.checkValidity()
 
   if (text) {
-    form.elements.text.addEventListener("input", enableSubmitButton)
+    text.addEventListener("input", enableSubmitButton)
   }
 
   if (prompt) {

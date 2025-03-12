@@ -5,8 +5,13 @@ const initFormValidation = () => {
   const { text, prompt, commit } = form.elements
   const enableSubmitButton = () => commit.disabled = !form.checkValidity()
 
-  text.addEventListener("input", enableSubmitButton)
-  prompt.addEventListener("input", enableSubmitButton)
+  if (text) {
+    text.addEventListener("input", enableSubmitButton)
+  }
+
+  if (prompt) {
+    prompt.addEventListener("input", enableSubmitButton)
+  }
 }
 
 document.addEventListener("turbo:load", initFormValidation)

@@ -1,12 +1,12 @@
 class AiAnnotationsController < ApplicationController
   def show
-    @ai_annotation = AiAnnotation.find_by!(uuid: params[:uuid]).content
+    @ai_annotation = AiAnnotation.find_by!(uuid: params[:uuid])
   end
 
   def new; end
 
   def create
-    text = params[:text]
+    text = params[:text] || AnnotationConverter.new.to_inline(params[:textae_annotation])
     prompt = params[:prompt]
     ai_annotation = AiAnnotation.generate!(text, prompt)
 
@@ -14,6 +14,12 @@ class AiAnnotationsController < ApplicationController
   rescue => e
     Rails.logger.error "Error: #{e.message}"
     flash.now[:alert] = "Unexpected error occurred while generating AI annotation."
-    render :new, status: :unprocessable_entity
+    @ai_annotation = AiAnnotation.find_by(uuid: params[:uuid])
+
+    if @ai_annotation
+      render :show, status: :unprocessable_entity
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 end

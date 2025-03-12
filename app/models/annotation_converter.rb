@@ -1,29 +1,13 @@
 class AnnotationConverter
-  JSON2INLINE_API = "https://pubannotation.org/conversions/json2inline".freeze
-
-  def initialize
-    uri = URI.parse(JSON2INLINE_API)
-    @http = prepare_http(uri)
-    @request = prepare_request(uri)
-  end
+  JSON2INLINE_API = URI("https://pubannotation.org/conversions/json2inline").freeze
 
   def to_inline(json)
-    @request.body = json
-
-    @http.request(@request).body.force_encoding("UTF-8")
-  end
-
-  private
-
-  def prepare_http(uri)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http
-  end
-
-  def prepare_request(uri)
-    request = Net::HTTP::Post.new(uri.request_uri)
+    request = Net::HTTP::Post.new(JSON2INLINE_API)
     request["Content-Type"] = "application/json"
-    request
+    request.body = json
+
+    Net::HTTP.start(JSON2INLINE_API.host, JSON2INLINE_API.port, use_ssl: true) do |http|
+      http.request(request).body.force_encoding("UTF-8")
+    end
   end
 end

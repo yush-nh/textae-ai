@@ -15,6 +15,11 @@
   padding: 0;
 }
 
+body {
+  width: 80%;
+  margin: auto;
+}
+
 .flash.alert {
   background-color: #f8d7da;
   color: #721c24;

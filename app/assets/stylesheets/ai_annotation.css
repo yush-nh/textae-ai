@@ -1,6 +1,4 @@
 .ai-annotation-form {
-  width: 60%;
-  margin: auto;
   margin-top: 40px;
 
   label {
@@ -35,6 +33,20 @@
     display: flex;
     justify-content: end;
     margin-top: 5px;
+  }
+}
+
+.textae-container {
+  margin-top: 20px;
+
+  .textae-editor {
+    border: solid 1px #D9D9D9;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .textae-control-bar {
+      border-radius: 12px 12px 0 0;
+    }
   }
 }
 

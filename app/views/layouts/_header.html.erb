@@ -1,0 +1,12 @@
+<header>
+  <div class="inner">
+    <div class="logo">
+      <%= link_to "TextAE Canvas", root_path %>
+    </div>
+    <% unless controller_name == "ai_annotations" && action_name == "new" %>
+      <div>
+        <%= link_to "New Text", root_path %>
+      </div>
+    <% end %>
+  </div>
+</header>

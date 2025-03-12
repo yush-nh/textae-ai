@@ -27,6 +27,6 @@
     .find((editor) => editor.id === 'ai-textae-editor')
 
   editor.inspectCallback = (annotation) => {
-    document.getElementById('textae-annotation').value = JSON.stringify(annotation)
+    document.querySelector('#textae-annotation').value = JSON.stringify(annotation)
   }
 </script>

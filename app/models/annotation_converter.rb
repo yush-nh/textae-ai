@@ -8,6 +8,6 @@ class AnnotationConverter
     request["Content-Type"] = "application/json"
     request.body = json
 
-    http.request(request).body.force_encoding('UTF-8')
+    http.request(request).body.force_encoding("UTF-8")
   end
 end

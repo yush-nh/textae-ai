@@ -6,7 +6,7 @@ class AiAnnotationsController < ApplicationController
   def new; end
 
   def create
-    text = params[:text] || AnnotationConverter.to_inline(params[:textae_annotation])
+    text = params[:text] || AnnotationConverter.new.to_inline(params[:textae_annotation])
     prompt = params[:prompt]
     ai_annotation = AiAnnotation.generate!(text, prompt)
 

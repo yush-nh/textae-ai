@@ -45,6 +45,10 @@ header {
       font-weight: bold;
       font-size: 1.75rem;
     }
+
+    .new-text-link {
+      display: block;
+    }
   }
 }
 

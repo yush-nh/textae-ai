@@ -7,8 +7,8 @@
 ## Installation
 ### Clone repository
 ```
-git clone https://github.com/jdkim/textae-canvas.git
-cd textae-canvas
+git clone https://github.com/jdkim/textae_canvas.git
+cd textae_canvas
 ```
 
 ### Install dependencies

@@ -1,24 +1,55 @@
-# README
+# TextAE Canvas
+## Environment
+- Ruby 3.4.2
+- Rails 8.0.1
+- SQLite3 2.6.0
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
+### Clone repository
+```
+git clone https://github.com/jdkim/textae_canvas.git
+cd textae_canvas
+```
 
-Things you may want to cover:
+### Install dependencies
+```
+bundle install
+```
 
-* Ruby version
+### Setup database
+```
+rails db:setup
+```
 
-* System dependencies
+### Set OpenAI API key to environment variable
+Create .env file and set the API key as below
+```
+OPENAI_API_KEY="Your api key here"
+```
 
-* Configuration
+To obtain your api key, follow the OpenAI API key creation procedure below.
 
-* Database creation
+### Start the server
+```
+rails server
+```
 
-* Database initialization
+Now, you can access TextAE Canvas at http://localhost:3000.
 
-* How to run the test suite
+## OpenAI API key creation procedure
+### Step 1
+API keys can be obtained from the OpenAI platform. Must be logged in.
+```
+https://platform.openai.com/api-keys
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Step 2
+Click `+ Create new secret key` button on API keys page and generate secret key.   
+The API key will be displayed immediately after creation, so please copy and keep it. Once this screen is closed, it cannot be displayed again.
 
-* Deployment instructions
-
-* ...
+### Step 3
+Creation can be done without registering payment information, but you will need to purchase API credits to use the API.   
+Move to billing page, set payment details and purchase credits.
+```
+https://platform.openai.com/settings/organization/billing/overview
+```

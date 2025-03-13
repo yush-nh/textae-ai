@@ -1,20 +1,21 @@
-<div id="ai-textae-editor" mode="edit">
-  <%= @ai_annotation.content %>
+<div class="textae-container">
+  <div id="ai-textae-editor" mode="edit">
+    <%= @ai_annotation.content %>
+  </div>
 </div>
 
 <%# When post with turbo, TextAE events does not work correctly on redirected page. %>
 <%# To fix this problem, turning off turbo. %>
 <%= form_with url: ai_annotations_path, method: :post, data: { turbo: false }, class: "ai-annotation-form" do |f| %>
-  <div>
-    <label style="display: block;">Prompt</label>
-    <%= f.textarea :prompt, required: true, rows: 2, style: "width: 80%;" %>
+  <div class="prompt-field">
+    <%= f.textarea :prompt, required: true, rows: 3, placeholder: "Order how to annotate the text" %>
   </div>
 
   <%= f.hidden_field :uuid, value: @ai_annotation.uuid %>
   <%= f.hidden_field :textae_annotation, id: 'textae-annotation' %>
 
-  <div>
-    <%= f.submit "Submit", disabled: true %>
+  <div class="submit-field">
+    <%= f.submit "Annotate", disabled: true, class: "button" %>
   </div>
 <% end %>
 

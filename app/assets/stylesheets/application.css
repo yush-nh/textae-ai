@@ -9,8 +9,60 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
- .flash.alert {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+header {
+  background-color: white;
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(56, 56, 56);
+
+  .inner {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: rgb(56, 56, 56);
+      text-decoration: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .logo a {
+      font-family: sans-serif, verdana, arial, helvetica;
+      font-weight: bold;
+      font-size: 1.75rem;
+    }
+
+    .new-text-link {
+      display: block;
+    }
+  }
+}
+
+.content {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.flash.alert {
+  margin-top: 20px;
+  padding: 10px;
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
+  border-radius: 12px;
 }

@@ -4,9 +4,7 @@
   </div>
 </div>
 
-<%# When post with turbo, TextAE events does not work correctly on redirected page. %>
-<%# To fix this problem, turning off turbo. %>
-<%= form_with url: ai_annotations_path, method: :post, data: { turbo: false }, class: "ai-annotation-form" do |f| %>
+<%= form_with url: ai_annotations_path, method: :post, class: "ai-annotation-form" do |f| %>
   <div class="prompt-field">
     <%= f.textarea :prompt, required: true, rows: 3, placeholder: "Order how to annotate the text" %>
   </div>

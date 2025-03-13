@@ -1,4 +1,4 @@
-const initFormValidation = () => {
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".ai-annotation-form")
   if (!form) return
 
@@ -12,7 +12,4 @@ const initFormValidation = () => {
   if (prompt) {
     prompt.addEventListener("input", enableSubmitButton)
   }
-}
-
-document.addEventListener("turbo:load", initFormValidation)
-document.addEventListener("turbo:render", initFormValidation)
+})

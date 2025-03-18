@@ -1,28 +1,24 @@
 class AiAnnotation < ApplicationRecord
   FORMAT_SPECIFICATION = <<~EOS
-    Annotate text using the following syntax:
+    Annotate the text according to the prompt with using the following syntax:
 
-    ## Annotation Structure
-    - An annotation is represented by two consecutive pairs of square brackets:
-      - First pair: annotated text
-      - Second pair: label
+    ## Annotation Format
+    - An annotation consists of two consecutive square bracket pairs:
+      - First: annotated text
+      - Second: label
     - Example: [Annotated Text][Label]
 
     ## Label Definition (Optional)
-    - Define labels with a square bracket followed by `:` and a URL.
-    - Example: [Label]: URL
+    - Labels can be defined as `[Label]: URL`.
 
-    ## Metacharacter Escaping
-    - The annotation structure (two consecutive pairs of square brackets) is rarely appear in normal text.
-      If it does occur, it may be misinterpreted as an annotation.
-      To avoid this, the first opening square bracket must be escaped with a backslash (\).
-    - Example: \[This is a part of][original text]
+    ## Escaping Metacharacters
+    - To prevent misinterpretation, escape the first `[` if it naturally occurs.
+    - Example: \[Part of][Original Text]
 
     ## Handling Unknown Prompts
-    - If you do not understand the prompt or cannot generate annotations, return the text exactly as it is without any modifications or additional messages.
+    - If could not understand prompt, return the input text unchanged.
 
-    Follow the prompt for annotation labels.
-    Output should be the original text with annotations.
+    Output the original text with annotations.
   EOS
 
   before_create :clean_old_annotations
@@ -39,7 +35,7 @@ class AiAnnotation < ApplicationRecord
         model: "gpt-4o",
         messages: [
           { role: "system", content: FORMAT_SPECIFICATION },
-          { role: "user", content: "Text:\n#{text}\n\nPrompt:\n#{prompt}" }
+          { role: "user", content: "#{text}\n\nPrompt:\n#{prompt}" }
         ]
       }
     )

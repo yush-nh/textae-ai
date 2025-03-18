@@ -4,16 +4,16 @@
   </div>
 </div>
 
-<%= form_with url: ai_annotations_path, method: :post, class: "ai-annotation-form" do |f| %>
+<%= form_with url: ai_annotations_path, method: :post, class: "ai-annotation-form" do %>
   <div class="prompt-field">
-    <%= f.textarea :prompt, required: true, rows: 3, placeholder: "Order how to annotate the text" %>
+    <%= text_area_tag :prompt, @prompt, required: true, rows: 3, placeholder: "Order how to annotate the text" %>
   </div>
 
-  <%= f.hidden_field :uuid, value: @ai_annotation.uuid %>
-  <%= f.hidden_field :textae_annotation, id: 'textae-annotation' %>
+  <%= hidden_field_tag :uuid, @ai_annotation.uuid %>
+  <%= hidden_field_tag :textae_annotation, nil, id: 'textae-annotation' %>
 
   <div class="submit-field">
-    <%= f.submit "Annotate", disabled: true, class: "button" %>
+    <%= submit_tag "Annotate", disabled: true, class: "button" %>
   </div>
 <% end %>
 

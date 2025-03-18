@@ -18,6 +18,9 @@ class AiAnnotation < ApplicationRecord
       To avoid this, the first opening square bracket must be escaped with a backslash (\).
     - Example: \[This is a part of][original text]
 
+    ## Handling Unknown Prompts
+    - If you do not understand the prompt or cannot generate annotations, return the text exactly as it is without any modifications or additional messages.
+
     Follow the prompt for annotation labels.
     Output should be the original text with annotations.
   EOS
@@ -36,7 +39,7 @@ class AiAnnotation < ApplicationRecord
         model: "gpt-4o",
         messages: [
           { role: "system", content: FORMAT_SPECIFICATION },
-          { role: "user", content: "text: #{text} prompt: #{prompt}" }
+          { role: "user", content: "Text:\n#{text}\n\nPrompt:\n#{prompt}" }
         ]
       }
     )

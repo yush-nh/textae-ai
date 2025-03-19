@@ -4,13 +4,13 @@
   </div>
 </div>
 
-<%= form_with model: @new_ai_annotation, class: "ai-annotation-form" do |f| %>
+<%= form_with model: @annotation, url: ai_annotations_path, class: "ai-annotation-form" do |f| %>
   <div class="prompt-field">
-    <%= f.textarea :prompt, required: true, rows: 3, placeholder: "Order how to annotate the text" %>
+    <%= f.textarea :prompt, required: true, rows: 3, class: "prompt-input", placeholder: "Order how to annotate the text" %>
   </div>
 
   <%= f.hidden_field :uuid, value: @ai_annotation.uuid %>
-  <%= f.hidden_field :textae_annotation, id: 'textae-annotation' %>
+  <%= f.hidden_field :content, id: 'textae-annotation' %>
 
   <div class="submit-field">
     <%= f.submit "Annotate", disabled: true, class: "button" %>

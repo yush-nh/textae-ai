@@ -2,14 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".ai-annotation-form")
   if (!form) return
 
-  const { ai_annotation_text, ai_annotation_prompt, commit } = form.elements
+  const text = document.querySelector(".text-input")
+  const prompt = document.querySelector(".prompt-input")
+  const commit = form.elements.commit
   const enableSubmitButton = () => commit.disabled = !form.checkValidity()
 
-  if (ai_annotation_text) {
-    ai_annotation_text.addEventListener("input", enableSubmitButton)
+  if (text) {
+    text.addEventListener("input", enableSubmitButton)
   }
 
-  if (ai_annotation_prompt) {
-    ai_annotation_prompt.addEventListener("input", enableSubmitButton)
+  if (prompt) {
+    prompt.addEventListener("input", enableSubmitButton)
   }
 })

@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
   get "/ai_annotations/new" => "ai_annotations#new"
   get "/ai_annotations/:uuid" => "ai_annotations#show"
-  resources :ai_annotations, only: :create
+  resources :ai_annotations, only: %i[create update]
 end

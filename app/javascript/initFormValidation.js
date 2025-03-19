@@ -12,4 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (ai_annotation_prompt) {
     ai_annotation_prompt.addEventListener("input", enableSubmitButton)
   }
+
+  // Sometimes form may be in a valid state on loaded timing. (e.g., due to errors or browser back)
+  // execute enableSubmitButton function once to ensure the submit button is set correctly.
+  enableSubmitButton()
 })

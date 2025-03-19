@@ -1,4 +1,6 @@
 class AiAnnotation < ApplicationRecord
+  attr_accessor :text, :prompt
+
   FORMAT_SPECIFICATION = <<~EOS
     Annotate the text according to the prompt with using the following syntax:
 
@@ -26,7 +28,14 @@ class AiAnnotation < ApplicationRecord
 
   scope :old, -> { where("created_at < ?", 1.day.ago) }
 
-  def self.generate!(text, prompt)
+  def self.prepare_with(text, prompt)
+    instance = new
+    instance.text = text
+    instance.prompt = prompt
+    instance
+  end
+
+  def annotate!
     # To reduce the risk of API key leakage, API error logging is disabled by default.
     # If you need to check the error details, enable logging by add argument `log_errors: true` like: OpenAI::Client.new(log_errors: true)
     client = OpenAI::Client.new
@@ -35,7 +44,7 @@ class AiAnnotation < ApplicationRecord
         model: "gpt-4o",
         messages: [
           { role: "system", content: FORMAT_SPECIFICATION },
-          { role: "user", content: "#{text}\n\nPrompt:\n#{prompt}" }
+          { role: "user", content: "#{@text}\n\nPrompt:\n#{@prompt}" }
         ]
       }
     )

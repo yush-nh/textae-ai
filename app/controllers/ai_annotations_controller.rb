@@ -17,7 +17,7 @@ class AiAnnotationsController < ApplicationController
         @annotation = Annotation.new(annotation_params)
         @annotation.annotate!
       end
-    raise RuntimeError
+
     redirect_to "/ai_annotations/#{ai_annotation.uuid}"
   rescue => e
     Rails.logger.error "Error: #{e.message}"
